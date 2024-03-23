@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newspapers</title>
+    <style>
+        /* Reset margin and padding for all elements */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Ensure html and body cover the whole viewport */
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Hide scrollbars */
+        }
+        /* Make the image cover the entire page */
+        img {
+            display: block; /* Remove default margin */
+            width: 100vw; /* 100% of the viewport width */
+            height: 100vh; /* 100% of the viewport height */
+        }
+    </style>
+</head>
+<body>
+    {{if .ImageURL}}
+    <img id="pdfImage" src="{{.ImageURL}}" alt="PDF Page as Image">
+    {{else}}
+    <p>No image available.</p>
+    {{end}}
+</body>
+</html>

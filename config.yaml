@@ -1,0 +1,10 @@
+pdf_urls:
+  - https://www.frontpages.com/chicago-tribune/
+  - https://www.frontpages.com/the-new-york-times/
+  - https://www.frontpages.com/mainichi-shinbun/
+  - https://www.frontpages.com/financial-times/
+  - https://www.frontpages.com/the-japan-times/
+  - https://www.frontpages.com/yomiuri-shinbun/
+  - https://www.frontpages.com/the-guardian-usa/
+
+cache_time: 5m
