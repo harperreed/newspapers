@@ -16,6 +16,7 @@ go-newspaper-display/
 ├── go.mod 📦
 ├── go.sum 📋
 ├── main.go 🚀
+├── main_test.go 🧪
 └── templates
     └── home_with_image.html 🌐
 ```
@@ -27,6 +28,7 @@ go-newspaper-display/
 - `docker-compose.yaml`: Defines our Docker Compose services 🐳
 - `go.mod` and `go.sum`: Go module files for managing dependencies 📦
 - `main.go`: The heart of our application, where all the magic happens ✨
+- `main_test.go`: Unit tests for our application 🧪
 - `templates/home_with_image.html`: HTML template for displaying the newspaper image 🗞️
 
 ## How to Use 🤔
@@ -36,6 +38,19 @@ go-newspaper-display/
 3. Update the `config.yaml` file with your desired PDF URLs and cache time ⚙️
 4. Run `docker-compose up` to start the application 🚀
 5. Open your web browser and visit `http://localhost:8080` to see the newspaper display! 🌐
+
+## Running Tests 🧪
+
+To run the unit tests for this project, follow these steps:
+
+1. Make sure you're in the project directory
+2. Run the following command:
+
+   ```
+   go test -v
+   ```
+
+3. The test results will be displayed in your terminal, showing which tests passed or failed
 
 ## Contributions Welcome! 🙌
 
