@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -10,13 +9,12 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"gopkg.in/yaml.v2"
 )
 
 // TestLoadConfig tests the loadConfig function
 func TestLoadConfig(t *testing.T) {
 	// Test successful config loading
-	tempFile, err := ioutil.TempFile("", "config*.yaml")
+	tempFile, err := os.CreateTemp("", "config*.yaml")
 	assert.NoError(t, err)
 	defer os.Remove(tempFile.Name())
 
@@ -40,7 +38,7 @@ cache_time: 1h
 	assert.Error(t, err)
 
 	// Test error handling for invalid YAML
-	invalidFile, err := ioutil.TempFile("", "invalid_config*.yaml")
+	invalidFile, err := os.CreateTemp("", "invalid_config*.yaml")
 	assert.NoError(t, err)
 	defer os.Remove(invalidFile.Name())
 
@@ -76,7 +74,7 @@ func TestGetCoverURL(t *testing.T) {
 	// Test successful URL extraction
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`<html><body><img id="giornale-img" src="/cover.jpg"></body></html>`))
+		_, _ = w.Write([]byte(`<html><body><img id="giornale-img" src="/cover.jpg"></body></html>`))
 	}))
 	defer server.Close()
 
@@ -87,7 +85,7 @@ func TestGetCoverURL(t *testing.T) {
 	// Test error handling for invalid HTML
 	invalidServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`<html><body>No image here</body></html>`))
+		_, _ = w.Write([]byte(`<html><body>No image here</body></html>`))
 	}))
 	defer invalidServer.Close()
 
@@ -100,7 +98,7 @@ func TestDownloadImage(t *testing.T) {
 	// Test successful image download
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("fake image data"))
+		_, _ = w.Write([]byte("fake image data"))
 	}))
 	defer server.Close()
 
